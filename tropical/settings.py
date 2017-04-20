@@ -25,7 +25,7 @@ SECRET_KEY = 'jkiv=bez1@wb&i*xh^1%+-5y!55+8^80q3xuq8*bszv$ag#oce'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["127.0.0.1","localhost"]
+ALLOWED_HOSTS = ["127.0.0.1","localhost", "tropical.pythonanywhere.com"]
 
 
 # Application definition
