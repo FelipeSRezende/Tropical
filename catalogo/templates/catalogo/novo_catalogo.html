@@ -66,6 +66,9 @@
                                     </div>
 
                                     <div class="col-md-6">
+                                        <button class="btn btn-primary pull-right" data-bind="click:salvarCatalogo" type="button">
+                                            <span class="glyphicon glyphicon-save"></span> Salvar Catalogo
+                                        </button>
                                         <button class="btn btn-success pull-right" type="button" data-toggle="modal"
                                                 data-target="#myModal">
                                             <span class="glyphicon glyphicon-plus-sign"></span> Add Produto
@@ -144,7 +147,7 @@
 
                                 <div class="list-group" data-bind="if: querysetProdutos().length == 0">
                                     <div class="list-group-item">
-                                        <p class="text-center">Se não encontrou seu produto na pesquisa, Cadastre um novo <a href="#!" class="btn-link">clicando aqui</a></p>
+                                        <p class="text-center">Se não encontrou seu produto na pesquisa, Cadastre um novo <button data-bind="click:addNovoProduto" class="btn-link">clicando aqui</button></p>
                                     </div>
                                 </div>
 

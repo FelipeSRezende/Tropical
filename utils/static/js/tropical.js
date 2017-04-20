@@ -44,3 +44,13 @@ function csrfSafeMethod(method) {
     // these HTTP methods do not require CSRF protection
     return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
 }
+
+function alerta(message) {
+
+    bootbox.dialog({
+        message:'<div class="text-center">'+message+'</div>',
+        onEscape:true,
+        show:true,
+        backdrop: true
+    });
+}

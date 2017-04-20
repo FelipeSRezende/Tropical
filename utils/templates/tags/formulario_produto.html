@@ -45,8 +45,15 @@
 <div class="row">
     <div class="col-md-6 form-group">
         <label for="categoria">Seção</label>
+        <!--ko if:produtoSelecionado().id() > 0-->
         <select class="form-control" id="categoria" disabled>
             <option data-bind="text: produtoSelecionado().categoria().nome"></option>
         </select>
+        <!--/ko-->
+
+        <!--ko ifnot:produtoSelecionado().id() > 0-->
+        <select data-bind="options:categorias,optionsText:'nome',value:produtoSelecionado().categoria,optionsCaption:'Escolha a categoria'" class="form-control" id="categoria" >
+        </select>
+        <!--/ko-->
     </div>
 </div>

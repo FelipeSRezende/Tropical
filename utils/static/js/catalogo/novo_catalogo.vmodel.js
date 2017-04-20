@@ -2,12 +2,12 @@
  * Created by maique on 20/04/17.
  */
 
-function NovoCatalogoVmodel(){
+function NovoCatalogoVmodel(dados){
     var self = this;
     self.query = ko.observable();
-    self.querysetProdutos = ko.observableArray();
     self.produtoSelecionado = ko.observable();
-
+    self.categorias = ko.observableArray(dados.categorias);
+    self.querysetProdutos = ko.observableArray();
 
     self.nomeCatalogo = ko.observable();
     self.linkImagem = ko.observable();
@@ -18,7 +18,7 @@ function NovoCatalogoVmodel(){
 
     // normal functions
     self.selecionarProduto = function (prod) {
-      self.produtoSelecionado(prod);debugger;
+      self.produtoSelecionado(prod);
     };
 
     self.adicionarAoCatalogo = function () {
@@ -32,6 +32,14 @@ function NovoCatalogoVmodel(){
         self.querysetProdutos.removeAll();
     };
 
+    self.addNovoProduto = function () {
+      self.produtoSelecionado(new ProdutoVmodel());
+    };
+
+    self.salvarCatalogo = function(){
+        alerta('Aguarde em breve será implementado isso...');
+    };
+
     // computed functions
     self.temProduto = ko.computed(function () {
         return self.produtos().length > 0;
@@ -40,7 +48,7 @@ function NovoCatalogoVmodel(){
        return self.produtoSelecionado() ? true : false;
     });
     self.exibirFormPesquisa = ko.computed(function () {
-       return self.produtoSelecionado() ? false : true;
+       return self.produtoSelecionado()  ? false : true;
     });
 
     // subscribe functions
@@ -60,13 +68,13 @@ function NovoCatalogoVmodel(){
 
 function ProdutoVmodel(produto) {
     var self = this;
-
-    self.nome = ko.observable(produto.nome);
-    self.referencia = ko.observable(produto.referencia);
-    self.preco_normal = ko.observable(produto.preco);
-    self.preco_promocional = ko.observable(produto.preco_promocional);
-    self.linkImg = ko.observable(produto.img);
-    self.categoria = ko.observable(produto.categoria);
+    self.id = ko.observable(produto ? produto.id : '0')
+    self.nome = ko.observable(produto ? produto.nome : '');
+    self.referencia = ko.observable(produto ? produto.referencia : '');
+    self.preco_normal = ko.observable(produto ? produto.preco : '0.00');
+    self.preco_promocional = ko.observable(produto ? produto.preco_promocional : '0.00');
+    self.linkImg = ko.observable(produto ? produto.img : '');
+    self.categoria = ko.observable(produto ? produto.categoria : {});
 
 }
 

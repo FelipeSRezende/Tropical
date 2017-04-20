@@ -1,6 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.http.response import JsonResponse
 from django.shortcuts import render
+from utils.models import lista_json
 
 # Create your views here.
 from utils.models import Produto
@@ -30,5 +31,5 @@ def novo_catalogo(request):
 def obter_produtos(request):
     query = request.GET.get('query')
     produtos = Produto.objects.filter(nome__icontains=query).order_by('nome')
-    contexto = {'produtos': Produto.lista_json(produtos)}
+    contexto = {'produtos': lista_json(produtos)}
     return JsonResponse(contexto)
