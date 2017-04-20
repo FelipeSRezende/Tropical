@@ -1,0 +1,179 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Novo Catalogo{% endblock %}
+
+{% block navbar %}
+    {% include 'tags/navbar.html' %}
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <span class="panel-title">Informações Sobre o Catalogo</span>
+            </div>
+
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="row">
+                            <div class="col-md-12 form-group">
+                                <label for="nome_catalogo">Nome do Catalogo</label>
+                                <input type="text" id="nome_catalogo" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12 form-group">
+                                <label for="validade_inicio">Inicio da Validade</label>
+                                <input type="date" id="validade_inicio" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12 form-group">
+                                <label for="validade_final">Valido Até</label>
+                                <input type="date" id="validade_final" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="row">
+                            <div class="col-md-12 form-group">
+                                <label for="link_img">Link da Imagem</label>
+                                <input type="text" id="link_img" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12 form-group">
+                                <label for="descricao">Descrição do Catalogo</label>
+                                <textarea rows="5" class="form-control" id="descricao"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <span class="panel-title">Produtos no Catalogo</span>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <button class="btn btn-success pull-right" type="button" data-toggle="modal"
+                                                data-target="#myModal">
+                                            <span class="glyphicon glyphicon-plus-sign"></span> Add Produto
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel-body">
+                                <p>
+                                    Os produtos abaixo fazem parte do seu catalogo e será exibido para seus clientes
+                                    no aplicativo do smartphone.
+                                </p>
+                            </div>
+                            <ul class="list-group">
+                                <!-- ko if: temProduto -->
+
+                                <!--ko foreach: produtos-->
+                                <li class="list-group-item clearfix">
+                                    <div class="row">
+                                        <div class="col-md-1">
+                                            <img data-bind="attr:{src :linkImg}" width="60" height="60" alt="img do produto">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <p class="text-bold" data-bind="text:nome"></p>
+                                            <span>Preço: R$<del data-bind="text:preco_normal"></del></span> | Promoção: R$<span data-bind="text:preco_promocional"></span>
+                                        </div>
+                                        <div class="col-md-7">
+                                            <div class="btn-group btn-group-sm pull-right">
+                                                <button class="btn btn-primary">Edit</button>
+                                                <button class="btn btn-danger">Delete</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <!--/ko-->
+
+                                <!-- /ko-->
+
+                                <!-- ko ifnot: temProduto -->
+                                <li class="list-group-item clearfix">
+                                    <p class="text-center text-bold">Ainda não há produtos nesse catalogo. Adicione
+                                        :)</p>
+                                </li>
+                                <!-- /ko-->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Adicionar Produto </h4>
+                </div>
+                <div class="modal-body">
+                    <div class="well">
+                        <div class="row" data-bind="if: exibirFormPesquisa">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <input type="text" data-bind="textInput:query" id="query" class="form-control"
+                                           placeholder="Digite o nome do produto">
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="list-group" data-bind="if: querysetProdutos().length > 0">
+                                    <!--ko foreach:querysetProdutos -->
+                                    <button type="button" class="list-group-item" data-bind="text:nome,click:$parent.selecionarProduto"></button>
+                                    <!--/ko -->
+                                </div>
+
+                                <div class="list-group" data-bind="if: querysetProdutos().length == 0">
+                                    <div class="list-group-item">
+                                        <p class="text-center">Se não encontrou seu produto na pesquisa, Cadastre um novo <a href="#!" class="btn-link">clicando aqui</a></p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="row" data-bind="ifnot: exibirFormPesquisa">
+                            <div class="col-md-12">
+                                <button class="btn btn-info" data-bind="click:limparItemSelecionado">
+                                    <span class="glyphicon glyphicon-refresh"></span> Trocar Produto
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12" data-bind="if:produtoFoiSelecionado()">
+                            {% include 'tags/formulario_produto.html' %}
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" data-bind="click:limparItemSelecionado">Fechar</button>
+                    <button type="button" class="btn btn-success" data-bind="click:adicionarAoCatalogo,enable:produtoFoiSelecionado" data-dismiss="modal">Adicionar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascript %}
+    <script src="{% static 'js/catalogo/novo_catalogo.vmodel.js' %}"></script>
+    <script src="{% static 'js/catalogo/novo_catalogo.js' %}"></script>
+{% endblock %}

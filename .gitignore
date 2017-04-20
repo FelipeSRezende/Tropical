@@ -1,0 +1,8 @@
+#ignorar arquivos ja compilados
+*.pyc
+
+#ignorar pasta de IDE
+.idea/
+
+#ignorar arquivos aleatorios
+db.sqlite3

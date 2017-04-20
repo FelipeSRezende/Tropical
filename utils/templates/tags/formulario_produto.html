@@ -1,0 +1,52 @@
+<div class="row">
+    <div class="col-md-8 form-group">
+        <label for="nome_produto">Nome do Produto</label>
+        <input class="form-control" type="text" data-bind="value:produtoSelecionado().nome" id="nome_produto">
+    </div>
+
+    <div class="col-md-4 form-group">
+        <label for="ref_produto">Referencia do Produto</label>
+        <input class="form-control" data-bind="value:produtoSelecionado().referencia" type="text" id="ref_produto">
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-4 form-group">
+        <label for="preco_original_produto">Preço Normal</label>
+         <div class="input-group">
+            <div class="input-group-addon">R$</div>
+            <input class="form-control" data-bind="value:produtoSelecionado().preco_normal" type="text" id="preco_original_produto">
+        </div>
+    </div>
+
+    <div class="col-md-4 form-group">
+        <label for="preco_promocional">Preço Promocional</label>
+        <div class="input-group">
+            <div class="input-group-addon">R$</div>
+            <input class="form-control" data-bind="value:produtoSelecionado().preco_promocional" type="text" min="0" max="100" id="preco_promocional" value="0">
+        </div>
+    </div>
+
+    <div class="col-md-4 form-group text-center">
+        <img data-bind="attr:{src :produtoSelecionado().linkImg}" width="120" height="120" alt="img do produto">
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12 form-group">
+        <label for="url-imagem">Link da Imagem</label>
+        <div class="input-group">
+            <div class="input-group-addon">http:</div>
+            <input class="form-control" data-bind="value:produtoSelecionado().linkImg" type="url" id="url-imagem">
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6 form-group">
+        <label for="categoria">Seção</label>
+        <select class="form-control" id="categoria" disabled>
+            <option data-bind="text: produtoSelecionado().categoria().nome"></option>
+        </select>
+    </div>
+</div>

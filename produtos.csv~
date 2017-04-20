@@ -1,0 +1,31 @@
+id,nome,referencia,preco,preco_promocao,img,ativo,categoria
+1,Arroz Tio João,5kg,15.00,12.40,http://savegnago.vteximg.com.br/arquivos/ids/264461-292-292/figura-1frente.jpg,True,1
+2,Feijão Maximo,1kg,6.90,5.80,http://superprix.vteximg.com.br/arquivos/ids/173596-292-292/Feijao-Preto-Super-Maximo-1kg.png,True,1
+3,Açucar União,1kg,3.30,2.50,http://www.extra-imagens.com.br/Alimentos/alimentosbasicos/acucar/9017381/791096836/Acucar-Uniao-01-Kg-9017381.jpg,True,11
+4,Óleo Soya,500ml,3.90,2.99,http://superprix.vteximg.com.br/arquivos/ids/172054-292-292/Oleo-de-Soja-Soya-900ml.jpg,True,12
+5,Refrigerante Coca Cola,3lt,11.00,7.90,http://superprix.vteximg.com.br/arquivos/ids/167652-292-292/Refrigerante-Coca-Cola-3l.jpg,True,6
+6,Creme dental Colgate,,3.20,2.90,http://mambo.vteximg.com.br/arquivos/ids/205097-292-292/23a2dd152a2228455ea660f5da4dd41c_creme-dental-colgate-tripla-acao-menta-original-90g_lett_1.jpg,True,5
+7,Papel higienico Neve,Leve 12 pague 11,13.60,10.90,http://www.extra-imagens.com.br/Control/ArquivoExibir.aspx?IdArquivo=639170532,True,5
+8,Sabão em pó Ariel,2kg,17.90,14.70,http://www.extra-imagens.com.br/Control/ArquivoExibir.aspx?IdArquivo=375568235,True,2
+9,Alcatra Friboi,kg,22.00,17.50,http://superprix.vteximg.com.br/arquivos/ids/167890-292-292/Coracao-da-Alcatra-Bovina-Friboi-Maturatta-15kg.jpg,True,7
+10,Salsicha Hot Dog Seara,kg,10.00,8.30,http://mambo.vteximg.com.br/arquivos/ids/200020-292-292/178560.jpg,True,8
+11,Café Pilão,500g,9.90,8.80,http://www.extra-imagens.com.br/Control/ArquivoExibir.aspx?IdArquivo=789217959,True,13
+12,Achocolatado Nescal,400g,6.80,4.00,http://www.extra-imagens.com.br/Control/ArquivoExibir.aspx?IdArquivo=655448594,True,13
+13,Leite longa vida Parmalate,Integral 1lt,3.90,2.75,http://mambo.vteximg.com.br/arquivos/ids/175450-292-292/7896034610017_leite-uht-integral_parmalat_1L_03_novas.jpg,True,13
+14,Marcarrão Adria,500g,3.00,2.20,http://savegnago.vteximg.com.br/arquivos/ids/275789-292-292/figura-1frente.jpg,True,14
+15,Batata Lisa,kg,2.50,1.99,http://images.tcdn.com.br/img/img_prod/421020/13_1_20150424071844.jpg,True,10
+16,Laranja Pêra,kg,3.60,1.99,http://savegnago.vteximg.com.br/arquivos/ids/278003-292-292/LARANJA-PERA-1KG-BANDEJA.jpg,True,10
+17,Uva Italia,kg,8.90,5.99,http://superprix.vteximg.com.br/arquivos/ids/170300-292-292/Uva-Italia-550g.jpg,True,10
+18,Margarina Qualy,500gm,5.80,3.99,http://superprix.vteximg.com.br/arquivos/ids/171612-292-292/Margarina-Qualy-Cremosa-com-Sal-500g.jpg,True,13
+19,Extrato de tomate Elefante,340g,2.40,1.99,http://savegnago.vteximg.com.br/arquivos/ids/268904-292-292/figura-1frente.jpg,True,4
+20,Maionese Hellmans,500g,5.60,3.50,http://savegnago.vteximg.com.br/arquivos/ids/264384-292-292/figura-1frente.jpg,True,4
+21,Azeite de Oliva Galo,500ml,9.90,6.90,http://mambo.vteximg.com.br/arquivos/ids/155586-292-292/5601252231164_azeite-gallo-500ml_01.jpg,True,3
+22,Farinha de trigo Dona Benta,1kg,2.20,1.99,http://superprix.vteximg.com.br/arquivos/ids/174560-292-292/Farinha-de-Trigo-Dona-Benta-Tradicional-1kg.png,True,1
+23,Esponja de aço Bombril,,2.50,1.99,http://www.extra-imagens.com.br/Control/ArquivoExibir.aspx?IdArquivo=797774444,True,2
+24,Calabresa Sadia,kg,4.90,3.20,http://mambo.vteximg.com.br/arquivos/ids/167319-292-292/7893000133075_linguica_guanabara_refeicao_sadia_500g_01.jpg,True,9
+25,Amaciante Fofo,500ml,12.00,8.00,http://mambo.vteximg.com.br/arquivos/ids/155941-292-292/7891150001596_amaciante_fofo_01.jpg,True,2
+26,Sabonete Dove,,2.50,0.99,http://www.pontofrio-imagens.com.br/Control/ArquivoExibir.aspx?IdArquivo=604837224,True,5
+27,Shampoo Elseve,Reparador,15.90,10.40,http://www.extra-imagens.com.br/Control/ArquivoExibir.aspx?IdArquivo=511236431,True,6
+28,Vinho Tinto Casa Geraldo,720ml,18.50,12.90,http://www.extra-imagens.com.br/Control/ArquivoExibir.aspx?IdArquivo=624577837,True,5
+29,Sidra Cereser,660ml,12.30,7.99,http://superprix.vteximg.com.br/arquivos/ids/173485-292-292/Sidra-Cereser-Maca-660ml.png,True,6
+30,Panetone Bauducco,,18.70,10.99,http://www.casasbahia-imagens.com.br/Control/ArquivoExibir.aspx?IdArquivo=102255005,True,15

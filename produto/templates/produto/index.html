@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block title %}Produtos{% endblock %}
+
+{% block navbar %}
+    {% include 'tags/navbar.html' %}
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <form action="{% url 'produto:index' %}" method="get" class="navbar-form navbar-left" role="search">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" value="{{ query }}" name="query" placeholder="Pesquisar por produto">
+                                    </div>
+                                    <button type="submit" class="btn btn-default">
+                                        <span class="glyphicon glyphicon-search"></span>
+                                    </button>
+                                </form>
+                            </div>
+                            <div class="col-md-6">
+                                <button class="btn btn-success btn-sm pull-right">
+                                    <span class="glyphicon glyphicon-plus-sign"></span> Novo Produto
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="list-group">
+                                    {% for produto in produtos %}
+                                        <div class="list-group-item">
+                                            <div class="row">
+                                                <div class="col-md-1">
+                                                    <img src="{{ produto.img }}" width="60" height="60"
+                                                         title="img do produto">
+                                                </div>
+                                                <div class="col-md-5">
+                                                    <h4 class="list-group-item-heading">{{ produto.nome }} {{ produto.referencia }}</h4>
+                                                    <p><b>Preço:</b> <span
+                                                            class="text-size-list">R$ {{ produto.preco }}</span></p>
+                                                    <p><b>Seção:</b> {{ produto.categoria.nome }}</p>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <p class="text-right">
+                                                        <a href="#!" class="btn btn-success">
+                                                            <span class="glyphicon glyphicon-edit"></span>
+                                                        </a>
+                                                        <a href="#!" class="btn btn-danger">
+                                                            <span class="glyphicon glyphicon-remove"></span>
+                                                        </a>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% empty %}
+
+                                        <p class="text-bold text-center">Nenhum Produto Cadastrado</p>
+
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

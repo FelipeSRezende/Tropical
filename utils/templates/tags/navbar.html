@@ -1,0 +1,28 @@
+
+    <nav class="navbar navbar-default">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#!">Tropical</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li class="{{ home }}">
+                    <a href="{% url 'home:home' %}">Home</a>
+                </li>
+
+                <li class="{{ prod }}">
+                    <a href="{% url 'produto:index' %}">Produtos</a>
+                </li>
+
+                <li class="{{ catalogos }}">
+                    <a href="{% url 'catalogo:catalogos' %}">Catalogos</a>
+                </li>
+            </ul>
+            <div class="collapse navbar-collapse">
+                <p class="navbar-text navbar-right">
+                    Logado como:
+                    <a href="#!" class=" text-capitalize navbar-link">{{ user.username }}</a>
+                    <a href="{% url 'acesso:logout' %}" class="btn-info btn-sm">Sair</a>
+                </p>
+            </div>
+        </div>
+    </nav>

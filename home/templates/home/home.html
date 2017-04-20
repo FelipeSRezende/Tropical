@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block title %} Inicio {% endblock %}
+
+{% block navbar %}
+    {% include 'tags/navbar.html' %}
+{% endblock %}
+{% block content %}
+<div class="container">
+<div class="row">
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h2 class="panel-title">Catalogos Ativos <small>* Os catalogos nesta lista estão disponivel para visualização do cliente no aplicativo.</small></h2>
+                    </div>
+                    <div class="panel-body">
+                        <div class="media well">
+                            <div class="media-left">
+                                <img class="media-object" src="http://www.mercadotropical.net/images/slogan.png" width="64" height="64" alt="teste" />
+                            </div>
+                            <div class="media-body">
+                                <h4 class="media-heading">Promoções de Natal</h4>
+                                <p class="text-danger">Valido de 10/12/2017 à 31/12/2017</p>
+                                <div class="btn-group btn-group-sm" role="group">
+                                    <button type="button" class="btn btn-info">Editar</button>
+                                    <a href="{% url 'catalogo:visualizar' 1 %}" class="btn btn-warning">Visualizar</a>
+                                    <button type="button" class="btn btn-danger">Deletar</button>
+                                </div>
+                            </div>
+                        </div>
+
+                         <div class="media well">
+                            <div class="media-left">
+                                <img class="media-object" src="http://www.mercadotropical.net/images/slogan.png" width="64" height="64" alt="teste" />
+                            </div>
+                            <div class="media-body">
+                                <h4 class="media-heading">Ano Novo Tropical</h4>
+                                <p class="text-danger">Valido de 01/01/2018 à 31/01/2018</p>
+                                <div class="btn-group btn-group-sm" role="group">
+                                    <button type="button" class="btn btn-info">Editar</button>
+                                    <a href="{% url 'catalogo:visualizar' 2 %}" class="btn btn-warning">Visualizar</a>
+                                    <button type="button" class="btn btn-danger">Deletar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}
