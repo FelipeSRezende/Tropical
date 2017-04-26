@@ -20,7 +20,7 @@
             <div class="collapse navbar-collapse">
                 <p class="navbar-text navbar-right">
                     Logado como:
-                    <a href="#!" class=" text-capitalize navbar-link">{{ user.username }}</a>
+                    <a href="#!" class=" text-capitalize navbar-link">{{ user.get_full_name }}</a>
                     <a href="{% url 'acesso:logout' %}" class="btn-info btn-sm">Sair</a>
                 </p>
             </div>

@@ -79,7 +79,7 @@ function ProdutoVmodel() {
 
     }
 
-    self.salvarNovoProduto = function () {debugger;
+    self.salvarNovoProduto = function () {
       if(self.validarNovoProduto()){
         post('/produtos/salvar_produto/',toModelProduto(self),function (dados) {
                 if(dados.success){
@@ -103,12 +103,11 @@ function ProdutoVmodel() {
         self.preco_promocional(produto.preco_promocional);
         self.categoria(produto.categoria.id);
 
-        debugger;
         $("#novoProduto").modal('show');
 
     };
 
-    self.editarProduto = function () {debugger;
+    self.editarProduto = function () {
       if(self.validarNovoProduto()){
         post('/produtos/editar_produto/',toModelProduto(self),function (dados) {
             self.limparDados();
@@ -215,20 +214,19 @@ function ProdutoVmodel() {
         self.obterProdutos();
     };
 
-    self.next = function (pagina) {
+    self.next = function () {
         if(self.hasNext()){
             self.pagina_atual(self.pagina_atual()+1);
             self.obterProdutos();
         }
     };
 
-    self.previous = function (pagina) {
+    self.previous = function () {
         if(self.hasPrevious()){
             self.pagina_atual(self.pagina_atual()-1);
             self.obterProdutos();
         }
     };
-
 
 
     //chamada de funções iniciais
