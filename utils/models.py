@@ -1,5 +1,7 @@
 from django.db import models
 from django.utils.formats import  localize
+from django.core.paginator import Paginator, EmptyPage,PageNotAnInteger
+
 # Create your models here.
 
 
@@ -21,7 +23,33 @@ class Categoria(models.Model):
 
         return categoria
 
+class ProdutoManager(models.Manager):
+
+    def filtrar_por_nome_paginado_json(self,query,pagina=1):
+
+        if(query):
+            produtos = self.get_queryset().filter(nome__icontains=query).order_by('nome')
+        else:
+            produtos = self.get_queryset().all().order_by('nome')
+
+        paginador = Paginator(lista_json(produtos),10)
+
+        try:
+            produtos_filtrado = paginador.page(pagina)
+        except PageNotAnInteger:
+            produtos_filtrado = paginador.page(1)
+        except EmptyPage:
+            produtos_filtrado = paginador.page(paginador.num_pages)
+
+        dados = {'produtos_filtrado':produtos_filtrado,'total_de_pagina':paginador.num_pages}
+        return dados
+
+
 class Produto(models.Model):
+    # adicionando um manager customizado
+    objects = ProdutoManager()
+    #----------------------------------
+
     nome = models.CharField(max_length=200)
     referencia = models.CharField(max_length=100)
     preco = models.DecimalField(max_digits=8,decimal_places=2,default=0)
@@ -42,7 +70,6 @@ class Produto(models.Model):
             'categoria': {'id':self.categoria.id,'nome':self.categoria.nome}
         }
         return produto
-
 
 class Catalogo(models.Model):
     nome = models.CharField(max_length=200)

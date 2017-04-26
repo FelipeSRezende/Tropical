@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}Produtos{% endblock %}
 
@@ -8,69 +9,139 @@
 
 {% block content %}
     <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <form action="{% url 'produto:index' %}" method="get" class="navbar-form navbar-left" role="search">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" value="{{ query }}" name="query" placeholder="Pesquisar por produto">
-                                    </div>
-                                    <button type="submit" class="btn btn-default">
-                                        <span class="glyphicon glyphicon-search"></span>
-                                    </button>
-                                </form>
-                            </div>
-                            <div class="col-md-6">
-                                <button class="btn btn-success btn-sm pull-right">
-                                    <span class="glyphicon glyphicon-plus-sign"></span> Novo Produto
-                                </button>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="panel-body">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="list-group">
-                                    {% for produto in produtos %}
-                                        <div class="list-group-item">
-                                            <div class="row">
-                                                <div class="col-md-1">
-                                                    <img src="{{ produto.img }}" width="60" height="60"
-                                                         title="img do produto">
-                                                </div>
-                                                <div class="col-md-5">
-                                                    <h4 class="list-group-item-heading">{{ produto.nome }} {{ produto.referencia }}</h4>
-                                                    <p><b>Preço:</b> <span
-                                                            class="text-size-list">R$ {{ produto.preco }}</span></p>
-                                                    <p><b>Seção:</b> {{ produto.categoria.nome }}</p>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <p class="text-right">
-                                                        <a href="#!" class="btn btn-success">
-                                                            <span class="glyphicon glyphicon-edit"></span>
-                                                        </a>
-                                                        <a href="#!" class="btn btn-danger">
-                                                            <span class="glyphicon glyphicon-remove"></span>
-                                                        </a>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    {% empty %}
-
-                                        <p class="text-bold text-center">Nenhum Produto Cadastrado</p>
-
-                                    {% endfor %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <form action="{% url 'produto:index' %}" method="get" class="navbar-form navbar-left"
+                                  role="search">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" data-bind="value:query" name="query"
+                                           placeholder="Pesquisar por produto">
                                 </div>
+                                <button type="submit" class="btn btn-default" data-bind="click:pesquisar">
+                                    <span class="glyphicon glyphicon-search"></span>
+                                </button>
+                            </form>
+                        </div>
+                        <div class="col-md-6">
+                            <button class="btn btn-success btn-sm pull-right" data-toggle="modal"
+                                    data-target="#novoProduto">
+                                <span class="glyphicon glyphicon-plus-sign"></span> Novo Produto
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-12">
+
+                            {% include 'produto/pagidor_produto.html' %}
+
+                            <div class="list-group">
+                                <!-- ko foreach:produtos -->
+                                <div class="list-group-item">
+                                    <div class="row">
+                                        <div class="col-md-1">
+                                            <img data-bind="attr:{src: $data.img}" width="60" height="60"
+                                                 title="img do produto">
+                                        </div>
+                                        <div class="col-md-5">
+                                            <h4 class="list-group-item-heading">
+                                                <span data-bind="text:$data.nome"></span>
+                                                <span data-bind="text:$data.referencia"></span>
+                                                <small data-bind="ifnot:ativo">
+                                                    <span class="text-danger">Desativado</span>
+                                                </small>
+                                            </h4>
+                                            <p><b>Preço:</b> <span
+                                                    class="text-size-list" data-bind="text:$data.preco"></span></p>
+                                            <p><b>Seção:</b> <span data-bind="text:$data.categoria.nome"></span></p>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p class="text-right">
+                                                <a href="#!" class="btn btn-success" title="Editar Produto"
+                                                   data-bind="click:$parent.abrirEdicaoProduto">
+                                                    <span class="glyphicon glyphicon-edit"></span>
+                                                </a>
+
+                                                <!--ko if: ativo-->
+                                                <a href="#!" class="btn btn-danger" title="Desativar Produto"
+                                                   data-bind="click:$parent.desativarProduto">
+                                                    <span class="glyphicon glyphicon-remove"></span>
+                                                </a>
+                                                <!--/ko-->
+
+                                                <!--ko ifnot: ativo-->
+                                                <a href="#!" class="btn btn-info" title="Reativar Produto"
+                                                   data-bind="click:$parent.reativarProduto">
+                                                    <span class="glyphicon glyphicon-check"></span>
+                                                </a>
+                                                <!--/ko-->
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/ko-->
+
+                                <!--ko if: produtos().length == 0-->
+                                <div class="list-group-item">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <p class="text-center">Nenhum produto encontrado!</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/ko-->
                             </div>
+                            {% include 'produto/pagidor_produto.html' %}
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <div class="modal fade" tabindex="-1" data-backdrop="static" role="dialog" id="novoProduto">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <!--ko if: id() == 0 -->
+                    <h4 class="modal-title">Novo Produto
+                        <small>* Este produto será salvo na base de dados global</small>
+                    </h4>
+                    <!--/ko-->
+                    <!--ko ifnot: id() == 0 -->
+                    <h4 class="modal-title">Editar Produto
+                        <small>* O produto será alterado na base de dados global</small>
+                    </h4>
+                    <!--/ko-->
+                </div>
+
+                <div class="modal-body">
+                    {% include 'tags/formulario_produto.html' %}
+                </div>
+
+                <div class="modal-footer">
+                    <!--ko if: id() == 0 -->
+                    <button class="btn btn-success" data-bind="click:salvarNovoProduto" id="btnSalvar">Salvar</button>
+                    <!--/ko-->
+
+                    <!--ko ifnot: id() == 0 -->
+                    <button class="btn btn-success" data-bind="click:editarProduto" id="btnSalvar">Atualizar</button>
+                    <!--/ko-->
+                    <button class="btn btn-default" data-bind="click:fecharModal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascript %}
+    <script src="{% static 'js/produto/produto.vmodel.js' %}"></script>
+    <script src="{% static 'js/produto/produto.js' %}"></script>
 {% endblock %}

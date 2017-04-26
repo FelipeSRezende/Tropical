@@ -1,0 +1,17 @@
+<nav aria-label="Page navigation">
+    <ul class="pagination">
+        <li data-bind="click:previous">
+            <a href="#" aria-label="Previous">
+                <span>Anterior</span>
+            </a>
+        </li>
+        <!--ko foreach: paginas-->
+        <li data-bind="css: {active : $data == $parent.pagina_atual()}"><a href="#" data-bind="text:$data"></a></li>
+        <!--/ko-->
+        <li data-bind="click:next">
+            <a href="#" aria-label="Next" >
+                <span>Proximo</span>
+            </a>
+        </li>
+    </ul>
+</nav>

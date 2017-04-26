@@ -4,8 +4,5 @@
 #ignorar pasta de IDE
 .idea/
 
-#ignorar pasta de arquivos estaticos
-static/
-
 #ignorar arquivos aleatorios
 db.sqlite3
