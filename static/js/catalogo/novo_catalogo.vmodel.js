@@ -18,7 +18,7 @@ function NovoCatalogoVmodel(){
 
     // normal functions
     self.selecionarProduto = function (prod) {
-      self.produtoSelecionado(prod);debugger;
+      self.produtoSelecionado(prod);
     };
 
     self.adicionarAoCatalogo = function () {

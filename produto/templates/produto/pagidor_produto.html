@@ -6,7 +6,7 @@
             </a>
         </li>
         <!--ko foreach: paginas-->
-        <li data-bind="css: {active : $data == $parent.pagina_atual()}"><a href="#" data-bind="text:$data"></a></li>
+        <li data-bind="css: {active : $data == $parent.pagina_atual()},click:$parent.goTo"><a href="#" data-bind="text:$data"></a></li>
         <!--/ko-->
         <li data-bind="click:next">
             <a href="#" aria-label="Next" >
