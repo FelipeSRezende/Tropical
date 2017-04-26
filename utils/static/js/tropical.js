@@ -54,3 +54,19 @@ function alerta(message) {
         backdrop: true
     });
 }
+
+function confirma(titulo,message,callback){
+    bootbox.confirm({
+    title: titulo,
+    message: message,
+    buttons: {
+        cancel: {
+            label: '<i class="fa fa-times"></i> Cancel'
+        },
+        confirm: {
+            label: '<i class="fa fa-check"></i> Confirm'
+        }
+    },
+    callback: callback
+});
+}

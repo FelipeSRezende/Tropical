@@ -1,0 +1,16 @@
+body,html{
+    padding: 0;
+    margin: 0;
+}
+.brand-title{
+    color: #1a237e !important;
+    font-weight: 700 !important;
+    font-size: medium !important;
+}
+.text-bold{
+    font-weight: 500;
+}
+
+.text-size-list{
+    font-size: 1.5em;
+}
