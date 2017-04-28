@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block title %}Confirmação{% endblock %}
+
+{% block navbar %}{% include 'includes/navbar.html' %}{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <form method="post">
+                {% csrf_token %}
+                    <div class="jumbotron">
+                        <h1>{{ produto.nome }}</h1>
+                        {% if produto.ativo %}
+                            <h2>Desativar Produto</h2>
+                            <p>Ao desativar este produto o mesmo não aparecerá em promoções para o cliente no
+                                aplicativo, mesmo
+                                que esteja marcado como EM PROMOÇÃO.</p>
+                            <p>Deseja Realmente Desativar este produto?</p>
+
+                            <button type="submit" class="btn btn-danger btn-lg" role="button">
+                                <span class="glyphicon glyphicon-remove"></span> Desativar
+                            </button>
+
+                        {% else %}
+                            <h2>Reativar Produto</h2>
+                            <p>Reativando este produto ele estará visivel para o cliente caso esteja marcado como em
+                                promoção.</p>
+                            <p>Deseja Realmente Reativar este produto?</p>
+
+                            <button type="submit" class="btn btn-info btn-lg" role="button">
+                                <span class="glyphicon glyphicon-check"></span> Reativar
+                            </button>
+
+                        {% endif %}
+                        <a href="{% url 'produto:index' %}" class="btn btn-default btn-lg">Voltar</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

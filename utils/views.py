@@ -1,10 +1,31 @@
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http.response import JsonResponse
 from django.shortcuts import render
 
 # Create your views here.
+from django.urls.base import reverse_lazy
+from django.views.generic.edit import FormView
+
+from utils.forms import CategoriaModelForm
 from utils.models import Categoria, lista_json, Produto
 
+
+class CategoriaView(LoginRequiredMixin, FormView):
+    form_class = CategoriaModelForm
+    template_name = 'paginas/categoria.html'
+
+    def get_success_url(self):
+        if(self.request.session['kwargs']):
+            kwargs = self.request.session['kwargs']
+            self.request.session['kwargs']  = None
+            return reverse_lazy(self.request.session['url_redirect'],kwargs={'slug':kwargs})
+        else:
+            return reverse_lazy(self.request.session['url_redirect'])
+
+    def form_valid(self, form):
+        form.save()
+        return super(CategoriaView, self).form_valid(form)
 
 @login_required
 def obter_categorias(request):

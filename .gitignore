@@ -8,3 +8,4 @@
 db.sqlite3
 gitssh
 gitssh.pub
+local_settings.py

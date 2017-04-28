@@ -4,7 +4,7 @@
 {% block title %}Produtos{% endblock %}
 
 {% block navbar %}
-    {% include 'tags/navbar.html' %}
+    {% include 'includes/navbar.html' %}
 {% endblock %}
 
 {% block content %}
@@ -39,7 +39,7 @@
                     <div class="row">
                         <div class="col-md-12">
 
-                            {% include 'produto/pagidor_produto.html' %}
+                            {% include 'produto/paginador_produto.html' %}
 
                             <div class="list-group">
                                 <!-- ko foreach:produtos -->
@@ -97,7 +97,7 @@
                                 </div>
                                 <!--/ko-->
                             </div>
-                            {% include 'produto/pagidor_produto.html' %}
+                            {% include 'produto/paginador_produto.html' %}
                         </div>
                     </div>
                 </div>
@@ -123,7 +123,7 @@
                 </div>
 
                 <div class="modal-body">
-                    {% include 'tags/formulario_produto.html' %}
+                    {% include 'includes/formulario_produto.html' %}
                 </div>
 
                 <div class="modal-footer">

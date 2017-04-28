@@ -4,7 +4,7 @@
 {% block title %}Novo Catalogo{% endblock %}
 
 {% block navbar %}
-    {% include 'tags/navbar.html' %}
+    {% include 'includes/navbar.html' %}
 {% endblock %}
 
 {% block content %}
@@ -163,7 +163,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12" data-bind="if:produtoFoiSelecionado()">
-                            {% include 'tags/formulario_catalogo_produto.html' %}
+                            {% include 'includes/formulario_catalogo_produto.html' %}
                         </div>
                     </div>
                 </div>

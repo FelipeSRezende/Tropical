@@ -1,0 +1,143 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load pagination %}
+
+{% block title %}Produtos{% endblock %}
+
+{% block navbar %}
+    {% include 'includes/navbar.html' %}
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            {% include 'includes/messages.html' %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <form action="" method="get" class="navbar-form navbar-left"
+                                  role="search">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="query"
+                                           placeholder="Pesquisar por produto">
+                                </div>
+                                <button type="submit" class="btn btn-default">
+                                    <span class="glyphicon glyphicon-search"></span>
+                                </button>
+                            </form>
+                        </div>
+                        <div class="col-md-6">
+                            <a href="{% url 'produto:cadastrar_produto' %}" class="btn btn-success btn-sm pull-right">
+                                <span class="glyphicon glyphicon-plus-sign"></span> Novo Produto
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            {% paginacao request paginator page_obj %}
+                            <div class="list-group">
+                                {% for produto in produtos %}
+
+                                    <div class="list-group-item">
+                                        <div class="row">
+                                            <div class="col-md-1">
+                                                <img src="{{ produto.img }}" width="60" height="60"
+                                                     title="img do produto">
+                                            </div>
+                                            <div class="col-md-5">
+                                                <h4 class="list-group-item-heading">
+                                                    {{ produto.nome }} {{ produto.referencia }}
+                                                    <small class="{% if produto.ativo %}hide{% endif %}">
+                                                        <span class="text-danger">Desativado</span>
+                                                    </small>
+                                                </h4>
+                                                <p>
+                                                    <b>Preço:</b>
+                                                    <span class="text-size-list">{{ produto.preco }}</span>
+                                                </p>
+                                                <p>
+                                                    <b>Seção:</b>
+                                                    <span>{{ produto.categoria.nome }}</span>
+                                                </p>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p class="text-right">
+                                                    <a href="{% url 'produto:atualizar_produto' produto.slug %}"
+                                                       class="btn btn-success" title="Editar Produto">
+                                                        <span class="glyphicon glyphicon-edit"></span>
+                                                    </a>
+
+                                                    {% if produto.ativo %}
+                                                        <a href="{% url 'produto:troca_status_produto' produto.slug %}"
+                                                           class="btn btn-danger" title="Desativar Produto">
+                                                            <span class="glyphicon glyphicon-remove"></span>
+                                                        </a>
+
+                                                    {% else %}
+                                                        <a href="{% url 'produto:troca_status_produto' produto.slug %}"
+                                                           class="btn btn-info" title="Reativar Produto">
+                                                            <span class="glyphicon glyphicon-check"></span>
+                                                        </a>
+
+                                                    {% endif %}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% empty %}
+                                    <div class="list-group-item">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <p class="text-center">Nenhum produto encontrado!</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                            {% paginacao request paginator page_obj %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!--<div class="modal fade" tabindex="-1" id="modalProduto" data-backdrop="false" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <form method="post" id="formProduto">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Cadastro de Produto</h4>
+                    </div>
+
+                    <div class="modal-body">
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                            <button type="button" class="btn btn-primary">Cadastrar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>-->
+{% endblock %}
+
+{% block javascript %}
+    <script src="{% static 'js/produto/produto.vmodel.js' %}"></script>
+    <script src="{% static 'js/produto/produto.js' %}"></script>
+{% endblock %}
