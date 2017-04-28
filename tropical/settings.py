@@ -25,7 +25,7 @@ SECRET_KEY = 'jkiv=bez1@wb&i*xh^1%+-5y!55+8^80q3xuq8*bszv$ag#oce'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["127.0.0.1","localhost", "tropical.pythonanywhere.com"]
+ALLOWED_HOSTS = ["testserver","127.0.0.1","localhost", "tropical.pythonanywhere.com"]
 
 
 # Application definition
@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'home.apps.HomeConfig',
     'catalogo.apps.CatalogoConfig',
     'produto.apps.ProdutoConfig',
+    'widget_tweaks'
 ]
 
 MIDDLEWARE = [
@@ -108,7 +109,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
-LANGUAGE_CODE = 'pt_BR'
+LANGUAGE_CODE = 'pt_br'
 
 TIME_ZONE = 'UTC'
 
@@ -127,3 +128,8 @@ STATIC_ROOT = os.path.join(BASE_DIR,'static')
 
 LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = '/login/'
+
+try:
+    from local_settings import *
+except ImportError:
+    pass

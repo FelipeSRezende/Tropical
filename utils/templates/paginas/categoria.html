@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+
+{% block title %} Categoria {% endblock %}
+{% block navbar %}{% include 'includes/navbar.html' %} {% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h2 class="panel-title">Nova Categoria</h2>
+                    </div>
+                    <div class="panel-body">
+                        <form method="post">
+                            {% csrf_token  %}
+                            <div class="row">
+                                <div class="col-md-4 form-group">
+                                    <label for="{{ form.nome.id_for_label }}">Nome Categoria</label>
+                                    {% render_field form.nome|add_class:'form-control' %}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <button class="btn btn-success" type="submit">Salvar</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

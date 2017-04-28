@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+
+{% block title %} Novo Produto {% endblock %}
+
+{% block content %}
+
+    <form method="post">
+        <div class="row">
+            <div class="col-md-8 form-group">
+                <span class="text-danger" title="Campo Obrigatório">*</span><label for="{{ form.nome.id_for_label }}">Nome
+                do
+                Produto</label>
+                {% render_field form.nome class="form-control" type="text" placeholder="Informe o nome do produto" %}
+            </div>
+
+            <div class="col-md-4 form-group">
+                <span class="text-danger" title="Campo Obrigatório">*</span>
+                <label for="{{ form.referencia.id_for_label }}">Referencia do Produto</label>
+                {% render_field form.referencia class="form-control" type="text" placeholder="Referencia do produto" %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                <button type="button" class="btn btn-primary">Cadastrar</button>
+            </div>
+        </div>
+    </form>
+
+{% endblock %}
+
+{% comment %}
+
+<div class="row">
+    <div class="col-md-4 form-group">
+        <span class="text-danger" title="Campo Obrigatório">*</span><label for="preco_original_produto">Preço
+        Normal</label>
+        <div class="input-group">
+            <div class="input-group-addon">R$</div>
+            <input class="form-control" data-bind="value:preco_normal" type="text" id="preco_original_produto"
+                   placeholder="3.75">
+        </div>
+        <p class="text-danger" data-bind="if:precoNormalObrigatorio">* Este campo é obrigatório</p>
+    </div>
+
+    <div class="col-md-4 form-group">
+        <label for="preco_promocional">Preço Promocional</label>
+        <div class="input-group">
+            <div class="input-group-addon">R$</div>
+            <input class="form-control" data-bind="value:preco_promocional" type="text" id="preco_promocional"
+                   placeholder="2.50">
+        </div>
+        <p class="text-info">
+            <small>Este valor poderá ser alterado mais tarde</small>
+        </p>
+    </div>
+
+    <div class="col-md-4 form-group text-center" data-bind="if:linkImg">
+        <img data-bind="attr:{src :linkImg}" width="120" height="120" alt="img do produto">
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12 form-group">
+        <span class="text-danger" title="Campo Obrigatório">*</span><label for="url-imagem">Link da Imagem</label>
+        <div class="input-group">
+            <div class="input-group-addon">http:</div>
+            <input class="form-control" data-bind="value:linkImg" type="url" id="url-imagem">
+        </div>
+        <p class="text-danger" data-bind="if:linkImgObrigatorio">* Este campo é obrigatório</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6 form-group">
+        <div data-bind="ifnot: exibirFormCategoria">
+            <span class="text-danger" title="Campo Obrigatório">*</span><label for="categoria">Seção</label>
+
+            <div class="input-group">
+
+                <select data-bind="options:categorias,optionsText:'nome',optionsValue:'id',value:categoria,optionsCaption:'Escolha a Seção'"
+                        class="form-control" id="categoria">
+                </select>
+
+                <span class="input-group-btn">
+                <button class="btn btn-link" title="Nova Categoria" id="novaCategoria"
+                        data-bind="click:abrirFormCategoria">
+                    <span class="glyphicon glyphicon-plus text-success"></span>
+                </button>
+            </span>
+            </div>
+            <p class="text-danger" data-bind="if:categoriaObrigatorio">* Este campo é obrigatório</p>
+        </div>
+
+        <div data-bind="if:exibirFormCategoria">
+            <label for="categoria">Nome da Seção</label>
+
+            <div class="input-group">
+                <input type="text" id="nome_secao" data-bind="value:nomeNovaCategoria" class="form-control">
+
+                <span class="input-group-btn">
+                <button class="btn btn-success" title="Salvar" id="salvarCategoria"
+                        data-bind="click:salvarNovaCategoria"
+                        data-bind="click:abrirFormCategoria">
+                    <span class="glyphicon glyphicon-floppy-disk"></span>
+                </button>
+                <button class="btn btn-danger" title="Voltar" id="cancelarCategoria"
+                        data-bind="click:fecharFormCategoria"
+                        data-bind="click:abrirFormCategoria">
+                    <span class="glyphicon glyphicon-remove-circle"></span>
+                </button>
+            </span>
+            </div>
+        </div>
+    </div>
+</div>{% endcomment %}
