@@ -16,17 +16,19 @@ $(document).ready(function () {
     });
 
     var imgProduto = $('#id_img');
+    if(imgProduto.val()){
+        $('#fotoProduto').attr('src', imgProduto.val())
+    }
+
     imgProduto.blur(function () {
         console.log('entrou');
         checkLinkImgOnline(
             imgProduto.val(),
             function () {
-                console.log('caiu no erro');
                 $('#fotoProduto').attr('src', '');
                 $('#fotoProduto').attr('alt', 'O link informado é Invalido. Por Favor tente outro.')
             },
             function () {
-                console.log('caiu no sucesso');
                 $('#fotoProduto').attr('src', imgProduto.val())
             }
         )
@@ -57,7 +59,7 @@ function verificarSeJaExisteProduto(query) {
     });
 }
 
-function aplicandoInputMask() {debugger;
+function aplicandoInputMask() {
     $('#id_preco').maskMoney();
     $('#id_preco_promocional').maskMoney();
 }
