@@ -1,0 +1,131 @@
+{% extends 'acesso/minha_conta.html' %}
+{% load widget_tweaks %}
+{% load thumbnail %}
+{% load static %}
+{% load validations %}
+
+{% block account %}
+    <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+        <div class="row">
+            <div class="col-xs-12 col-md-12">
+
+                <ol class="breadcrumb">
+                    <li><h4>Informações do Estabelecimento</h4></li>
+                </ol>
+
+                <div class="row">
+                    <div class="col-xs-12 col-md-12 form-group">
+                        <div class="row">
+                            <div class="col-xs-6 col-md-6 form-group">
+                                <label for="{{ form.foto_perfil.id_for_label }}">Foto do estabelecimento</label>
+                                {% render_field form.foto_perfil class="form-control" %}
+                            </div>
+                            <div class="col-xs-6 col-md-6 form-group text-center">
+                                {% if not form.foto_perfil.value %}
+                                <img src="{% static 'img/sem_imagem.jpg' %}" alt="Foto do estabelecimento"  id="fotoEstabelecimento" width="200" height="200">
+                                {% else %}
+                                    <div class="thumbnail">
+                                        <img src="{{ form.foto_perfil.value | thumbnail_url:'img_estabelecimento' }}"  alt="Foto do estabelecimento"  id="fotoEstabelecimento">
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12 col-md-12 form-group">
+                        <div class="row">
+                            <div class="col-xs-6 col-md-6 form-group has-{% if form.nome_estabelecimento.errors %}error{% endif %}">
+                                <label for="{{ form.nome_estabelecimento.id_for_label }}">Nome do
+                                    Estabelecimento</label>
+                                {% render_field form.nome_estabelecimento class="form-control" %}
+                                {% validations form.nome_estabelecimento.errors %}
+                            </div>
+                            <div class="col-xs-6 col-md-6 form-group has-{% if form.telefone_principal.errors %}error{% endif %}">
+                                <label for="{{ form.telefone_principal.id_for_label }}">Telefone Principal</label>
+                                {% render_field form.telefone_principal class="form-control" %}
+                                {% validations form.telefone_principal.errors %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <ol class="breadcrumb">
+                    <li><h4>Dados de Acesso</h4></li>
+                </ol>
+                <div class="row">
+                    <div class="col-xs-8 col-md-8 form-group has-{% if form.username.errors %}error{% endif %}">
+                        <label for="{{ form.username.if_for_label }}">Login</label>
+                        {% render_field form.username class="form-control" %}
+                        {% validations form.username.errors %}
+                    </div>
+
+                    <div class="col-xs-8 col-md-8 form-group has-{% if form.email.errors %}error{% endif %}">
+                        <label for="{{ form.email.id_for_label }}">E-mail</label>
+                        {% render_field form.email class="form-control" %}
+                        {% validations form.email.errors %}
+                    </div>
+                </div>
+
+                <ol class="breadcrumb">
+                    <li><h4>Dados de Localização</h4></li>
+                </ol>
+
+                <div class="row">
+                    <div class="col-xs-6 col-md-6 form-group">
+                        <div class="row">
+                            <div class="col-xs-6 col-md-6 form-group">
+                                <label for="{{ form.cep.id_for_label }}">CEP</label>
+                                {% render_field form.cep class="form-control" %}
+                            </div>
+                            <div class="col-xs-6 col-md-6 form-group">
+                                <label for="naoSeiCep">&nbsp;</label>
+                                <p id="naoSeiCep"><a href="#" class="btn btn-link">não sei o meu cep.</a></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12 col-md-12 form-group ">
+                        <div class="row">
+                            <div class="col-xs-6 col-md-6 form-group has-{% if form.logradouro.errors %}error{% endif %}">
+                                <label for="{{ form.logradouro.id_for_label }}">Logradouro</label>
+                                {% render_field form.logradouro class="form-control" %}
+                            </div>
+                            <div class="col-xs-6 col-md-6 form-group has-{% if form.complemento.errors %}error{% endif %}">
+                                <label for="{{ form.complemento.id_for_label }}">Complemento</label>
+                                {% render_field form.complemento class="form-control" %}
+                            {% validations form.complemento.errors %}
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-6 col-md-6 form-group">
+                                <label for="bairo">Bairro</label>
+                                {% render_field form.bairro class="form-control" %}
+                            </div>
+                            <div class="col-xs-4 col-md-4 form-group has-{% if form.municipio.errors %}error{% endif %}">
+                                <label for="{{ form.municipio.id_for_label }}">Municipio</label>
+                                {% render_field form.municipio class="form-control" %}
+                            {% validations form.municipio.errors %}
+                            </div>
+                            <div class="col-xs-2 col-md-2 form-group has-{% if form.estado.errors %}error{% endif %}">
+                                <label for="{{ form.estado.id_for_label }}">UF</label>
+                                {% render_field form.estado class="form-control" %}
+                            {% validations form.estado.errors %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-xs-12">
+                        <button type="submit" class="btn btn-success btn-lg">Salvar Alterações</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </form>
+{% endblock %}
+{% block javascript %}
+    <script type="text/javascript" rel="script" src="{% static 'js/acesso/minha_conta_atualizar_dados.js' %}"></script>
+{% endblock %}

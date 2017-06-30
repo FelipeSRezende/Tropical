@@ -1,0 +1,68 @@
+{% extends 'home/home_autenticado.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% load validations %}
+
+{% block title %}Promoção Relampago{% endblock %}
+
+{% block navbar %}{% include 'includes/navbar.html' %}{% endblock %}
+
+{% block content-menu %}
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <span class="panel-title">Promoção Relampago: <b>{{ produto.nome_produto }}</b> - R$ {{ produto.preco_normal }}</span>
+        </div>
+        <div class="panel-body">
+            <form method="post">
+                {% csrf_token %}
+
+                {% for field in form %}
+                    {% for error in field.errors %}
+                        <p>{{ field.label }} - {{ error }}</p>
+                    {% endfor %}
+                {% endfor %}
+
+                <div class="row">
+                    <div class="col-md-4 form-group">
+                        <label for="{{ form.preco_promocional.id_for_label }}">{{ form.preco_promocional.label }}</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">R$</div>
+                            {% render_field form.preco_promocional type="text" class="form-control" %}
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-3 form-group">
+                        <label for="{{ form.promocao_relampago.id_for_label }}">{{ form.promocao_relampago.label }}</label>
+                        <div class="input-group">
+                            {% render_field form.promocao_relampago class="form-control" %}
+                            <div class="input-group-addon">Min</div>
+                        </div>
+                    </div>
+                </div>
+
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <div class="checkbox">
+                            <label for="{{ form.em_promocao.id_for_label }}">
+                                {% render_field form.em_promocao %} {{ form.em_promocao.label }}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <button class="btn btn-success">Salvar</button>
+                        <a href="{% url 'home:inicio' %}" class="btn btn-default">Voltar</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascript %}
+    <script src="{% static 'js/produto/promocao_relampago.js' %}"></script>
+{% endblock %}

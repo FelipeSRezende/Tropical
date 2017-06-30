@@ -7,8 +7,9 @@ from django.shortcuts import render
 from django.urls.base import reverse_lazy
 from django.views.generic.edit import FormView
 
+from produto.models import EstabelecimentoProduto
 from utils.forms import CategoriaModelForm
-from utils.models import Categoria, lista_json, Produto
+from utils.models import Categoria, lista_json
 
 
 class CategoriaView(LoginRequiredMixin, FormView):
@@ -35,7 +36,7 @@ def obter_categorias(request):
 @login_required
 def verificar_se_existe_produto_ja_cadastrado(request):
     query = request.GET.get('query')
-    produto = Produto.objects.filter(nome__iexact=query).first()
+    produto = EstabelecimentoProduto.objects.filter(nome_produto__iexact=query).first()
 
     if(produto):
         dados = {'existe': True}

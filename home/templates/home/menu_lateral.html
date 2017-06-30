@@ -1,0 +1,18 @@
+
+    <div class="list-group">
+        <a href="{% url 'home:inicio' %}" class="list-group-item {{ meus_produtos }}">
+           <span class="glyphicon glyphicon-shopping-cart"></span> Meus Produtos
+        </a>
+
+        <a href="{% url 'produto:cadastrar_produto' %}" class="list-group-item {{ cadastrar_produto }}">
+            <span class=" glyphicon glyphicon-ok"></span> Cadastrar Novo Produto
+        </a>
+
+        <a href="#" class="list-group-item">
+            <span class="glyphicon glyphicon-pushpin"></span> Criar Catálogo de Promoção
+        </a>
+
+        <a href="{% url 'acesso:logout' %}" class="list-group-item">
+           <span class="glyphicon glyphicon-log-out"></span> Logout
+        </a>
+    </div>

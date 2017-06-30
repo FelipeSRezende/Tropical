@@ -1,0 +1,112 @@
+{% extends 'home/home_autenticado.html' %}
+{% load static %}
+{% load pagination %}
+{% load thumbnail %}
+
+{% block subtitle %}Meus Produtos{% endblock %}
+
+{% block content-menu %}
+    <div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-md-6">
+                        <form action="" method="get" class="navbar-form navbar-left"
+                              role="search">
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="query"
+                                       placeholder="Pesquisar por produto">
+                            </div>
+                            <button type="submit" class="btn btn-default">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        {% paginacao request paginator page_obj %}
+                        <div class="list-group">
+                            {% for produto in produtos %}
+
+                                <div class="list-group-item">
+                                    <div class="row">
+                                        <div class="col-md-1">
+                                            {% if  produto.imagem %}
+                                                <img src="{{ produto.imagem | thumbnail_url:'thumb_produto' }}" title="img do produto">
+                                            {% else %}
+                                                <img src="{% static 'img/sem_imagem.jpg' %}" title="img do produto" width="60" height="60">
+                                            {% endif %}
+                                        </div>
+
+                                        <div class="col-md-5">
+                                            <h4 class="list-group-item-heading">
+                                                {{ produto.nome_produto }} {{ produto.ref }}
+                                                <small class="{% if produto.is_active %}hide{% endif %}">
+                                                    <span class="text-danger">Desativado</span>
+                                                </small>
+                                            </h4>
+                                            <p>
+                                                <span>Preço:</span>
+                                                <b>R$ {{ produto.preco_normal }}</b>
+                                                 -
+                                                <span>Seção:</span>
+                                                <b>{{ produto.secao.nome }}</b>
+                                            </p>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p class="text-right">
+
+                                                <a href="{% url 'produto:promocao_relampago' produto.slug %}"
+                                                   class="btn btn-warning" title="Colocar em Promoção Relampago">
+                                                    <span class="glyphicon glyphicon-flash"></span>
+                                                </a>
+
+                                                <a href="{% url 'produto:atualizar_produto' produto.slug %}"
+                                                   class="btn btn-success" title="Editar Produto">
+                                                    <span class="glyphicon glyphicon-edit"></span>
+                                                </a>
+
+                                                {% if produto.is_active %}
+                                                    <a href="{% url 'produto:troca_status_produto' produto.slug %}"
+                                                       class="btn btn-danger" title="Desativar Produto">
+                                                        <span class="glyphicon glyphicon-remove"></span>
+                                                    </a>
+
+                                                {% else %}
+                                                    <a href="{% url 'produto:troca_status_produto' produto.slug %}"
+                                                       class="btn btn-info" title="Reativar Produto">
+                                                        <span class="glyphicon glyphicon-check"></span>
+                                                    </a>
+
+                                                {% endif %}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% empty %}
+                                <div class="list-group-item">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <p class="text-center">Nenhum produto encontrado!</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                        {% paginacao request paginator page_obj %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascript %}
+    <script src="{% static 'js/produto/produto.vmodel.js' %}"></script>
+    <script src="{% static 'js/produto/produto.js' %}"></script>
+{% endblock %}

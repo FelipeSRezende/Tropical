@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+from django.urls.base import reverse_lazy
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -40,7 +42,7 @@ INSTALLED_APPS = [
     'utils.apps.UtilsConfig',
     'acesso.apps.AcessoConfig',
     'home.apps.HomeConfig',
-    'catalogo.apps.CatalogoConfig',
+    'easy_thumbnails',
     'produto.apps.ProdutoConfig',
     'widget_tweaks'
 ]
@@ -124,12 +126,39 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR,'static')
+MEDIA_URL = '/media/'
 
-LOGIN_REDIRECT_URL = '/'
-LOGIN_URL = '/login/'
+STATIC_ROOT = os.path.join(BASE_DIR,'static')
+MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+
+# Autenticação
+LOGIN_REDIRECT_URL = reverse_lazy('home:inicio')
+LOGIN_URL = reverse_lazy('acesso:login')
+AUTH_USER_MODEL = 'acesso.Estabelecimento'
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'acesso.backends.ModelBackend',
+)
+
+from django.contrib.messages import constants as messages_constants
+MESSAGE_TAGS = {
+    messages_constants.DEBUG: 'debug',
+    messages_constants.INFO: 'info',
+    messages_constants.SUCCESS: 'success',
+    messages_constants.WARNING:'warning',
+    messages_constants.ERROR: 'danger',
+}
+
+THUMBNAIL_ALIASES = {
+    '' : {
+        'img_estabelecimento' : {'size':(350,245),'crop': True},
+        'thumb_produto' : {'size':(60,60),'crop': True},
+    }
+}
 
 try:
     from local_settings import *
 except ImportError:
     pass
+
+

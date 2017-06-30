@@ -1,0 +1,32 @@
+{% extends 'acesso/minha_conta.html' %}
+{% load widget_tweaks %}
+{% load validations %}
+
+{% block account %}
+    <form method="post">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-xs-12 col-md-12">
+                <ol class="breadcrumb">
+                    <li>Confirme as informações abaixo para alterar sua senha atual.</li>
+                </ol>
+
+                {% for field in form %}
+                    <div class="row">
+                        <div class="col-md-8 col-xs-8 form-group has-{% if field.errors %}error{% endif %}">
+                            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                            {% render_field field class="form-control" %}
+                            {% validations field.errors  %}
+                        </div>
+                    </div>
+                {% endfor %}
+
+                <div class="row">
+                    <div class="col-xs-4 col-md-4">
+                        <button class="btn btn-success" type="submit">Salvar Alterações</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+{% endblock %}

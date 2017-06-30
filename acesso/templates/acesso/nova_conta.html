@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+
+{% block title %}Nova Conta{% endblock %}
+{% block navbar %}{% include 'includes/navbar_register.html' %}{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h2 class="panel-title">Informações de Acesso</h2>
+                    </div>
+                    <div class="panel-body">
+                        <form method="post">
+                            {% csrf_token %}
+
+                            <div class="row">
+                                <div class="col-md-8 col-sm-8 form-group">
+                                    <label for="{{ form.nome_estabelecimento.id_for_label }}">
+                                        Nome do Estabelecimento
+                                    </label>
+
+                                    {% render_field form.nome_estabelecimento class="form-control" %}
+                                    {% for error in form.nome_estabelecimento.errors %}
+                                        <p class="text-danger">{{ error }}</p>
+                                    {% endfor %}
+
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 col-sm-6 form-group">
+                                    <label for="username">Login</label>
+                                    {% render_field form.username type="text" class="form-control" id="username" %}
+                                    {% for error in form.username.errors %}
+                                        <p class="text-danger">{{ error }}</p>
+                                    {% endfor %}
+
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 col-sm-6 form-group">
+                                    <label for="email">Email</label>
+                                    {% render_field form.email type="email" class="form-control" id="email" %}
+                                    {% for error in form.email.errors %}
+                                        <p class="text-danger">{{ error }}</p>
+                                    {% endfor %}
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4 col-sm-4 form-group">
+                                    <label for="{{ form.password1.id_for_label }}">Password</label>
+                                    {% render_field form.password1 class="form-control" %}
+                                    {% for error in form.password1.errors %}
+                                        <p class="text-danger">{{ error }}</p>
+                                    {% endfor %}
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4 col-sm-4 form-group">
+                                    <label for="{{ form.password2.id_for_label }}">Confirme o Password</label>
+                                    {% render_field form.password2 class="form-control" %}
+                                    {% for error in form.password2.errors %}
+                                        <p class="text-danger">{{ error }}</p>
+                                    {% endfor %}
+                                </div>
+                            </div>
+
+                            <button class="btn btn-success btn-lg" type="submit">Registrar</button>
+                            <a class="btn btn-lg btn-default" href="{% url 'home:home' %}">Cancelar</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

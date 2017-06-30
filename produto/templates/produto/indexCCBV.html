@@ -1,20 +1,11 @@
-{% extends 'base.html' %}
+{% extends 'home/home_autenticado.html' %}
 {% load static %}
 {% load pagination %}
 
-{% block title %}Produtos{% endblock %}
+{% block subtitle %}Meus Produtos{% endblock %}
 
-{% block navbar %}
-    {% include 'includes/navbar.html' %}
-{% endblock %}
-
-{% block content %}
+{% block content-menu %}
     <div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            {% include 'includes/messages.html' %}
-        </div>
-    </div>
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-default">
@@ -50,7 +41,7 @@
                                     <div class="list-group-item">
                                         <div class="row">
                                             <div class="col-md-1">
-                                                <img src="{{ produto.img }}" width="60" height="60"
+                                                <img src="{{ produto.imagem }}" width="60" height="60"
                                                      title="img do produto">
                                             </div>
                                             <div class="col-md-5">

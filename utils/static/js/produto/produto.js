@@ -60,6 +60,6 @@ function verificarSeJaExisteProduto(query) {
 }
 
 function aplicandoInputMask() {
-    $('#id_preco').maskMoney();
+    $('#id_preco_normal').maskMoney();
     $('#id_preco_promocional').maskMoney();
 }

@@ -1,57 +1,56 @@
 {% extends 'base.html' %}
 
 {% block title %} Login {% endblock %}
-
+{% block navbar %}{% include 'includes/navbar_register.html' %}{% endblock %}
 {% block content %}
+    <div class="container">
+        <form method="post">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-xs-4 col-md-4 col-md-offset-4 col-xs-offset-4">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <h2 class="text-center">+ BARATO</h2>
+                            <p class="text-center text-muted">Informe seus dados para ter acesso ao sistema.</p>
+                            <div class="row">
+                                <div class="col-md-12 col-xs-12">
+                                    {% if form.non_field_errors %}
+                                        {% for error in form.non_field_errors %}
+                                            <p class="text-danger">{{ error }}</p>
+                                        {% endfor %}
+                                    {% endif %}
+                                </div>
+                                <div class="col-md-12 col-xs-12">
+                                    <div class="form-group">
+                                        <label for="username">Login / Email</label>
+                                        <input type="text" class="form-control" id="username" name="username"
+                                               placeholder="Seu login ou e-mail">
+                                        {% for e in form.username.errors %}
+                                            <p class="text-danger">{{ e }}</p>
+                                        {% endfor %}
+                                    </div>
+                                </div>
 
-    <form method="post">
-        {% csrf_token %}
-        <div class="row">
-            <div class="col-md-12">
-                <h2 class="text-center">Tropical Marketing</h2>
+                                <div class="col-md-12 col-xs-12">
+                                    <div class="form-group">
+                                        <label for="password">Senha</label>
+                                        <input type="password" class="form-control" id="password" name="password"
+                                               placeholder="Sua senha">
+                                        {% for e in form.password.errors %}
+                                            <p class="text-danger">{{ e }}</p>
+                                        {% endfor %}
+                                    </div>
+                                </div>
 
-                <div class="row">
-                    <div class="col col-md-4 col-md-offset-4">
-                        {% if form.non_field_errors %}
-                            {% for error in form.non_field_errors %}
-                                <p class="text-danger">{{ error }}</p>
-                            {% endfor %}
-                        {% endif %}
-                    </div>
-                </div>
+                                <div class="col-md-12 col-xs-12">
+                                    <button type="submit" class="btn btn-lg btn-block btn-success">Entrar</button>
+                                </div>
 
-                <div class="row">
-                    <div class="col-md-4 col-md-offset-4">
-                        <div class="form-group">
-                            <label for="username">Username</label>
-                            <input type="text" class="form-control" id="username" name="username"
-                                   placeholder="Seu login">
-                            {% for e in form.username.errors %}
-                                <p class="text-danger">{{ e }}</p>
-                            {% endfor %}
+                            </div>
                         </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-4 col-md-offset-4">
-                        <div class="form-group">
-                            <label for="password">Senha</label>
-                            <input type="password" class="form-control" id="password" name="password"
-                                   placeholder="Sua senha">
-                            {% for e in form.password.errors %}
-                                <p class="text-danger">{{ e }}</p>
-                            {% endfor %}
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-4 col-md-offset-4">
-                        <button type="submit" class="btn btn-block btn-success">Entrar</button>
                     </div>
                 </div>
             </div>
-        </div>
-    </form>
+        </form>
+    </div>
 {% endblock %}

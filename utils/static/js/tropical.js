@@ -70,3 +70,8 @@ function confirma(titulo,message,callback){
     callback: callback
 });
 }
+
+function encontrarCEP(cep,callback) {
+    url = "https://viacep.com.br/ws/"+cep+"/json/"
+    get(url,{},callback);
+}

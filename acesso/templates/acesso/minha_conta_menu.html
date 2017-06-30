@@ -1,0 +1,10 @@
+<div class="list-group">
+
+    <a href="{% url 'acesso:minha_conta' %}" class="list-group-item {{ meus_dados }}">
+        <span class="glyphicon glyphicon-user" aria-hidden="true"></span> Meus Dados
+    </a>
+
+    <a href="{% url 'acesso:alterar_senha' %}" class="list-group-item {{ alterar_senha }}">
+        <span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span> Alterar Senha de Acesso
+    </a>
+</div>
